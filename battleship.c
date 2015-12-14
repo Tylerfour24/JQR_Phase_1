@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+#include <stdlib.h>
 
 /*Implement a method for dynamically storing a game board that will be displayed in rows and columns in a file; this board will be at a minimal 10x10 and cannot be a hard coded value, it will be a given value randomly at runtime.*/
 
@@ -13,7 +15,10 @@ struct Ship {
 
 int main(void)
 {
+	srand(time(NULL));
+
 //use a struct to create the ships
+
 	struct Ship Patrol_Boat;
 	struct Ship Submarine;
 	struct Ship Cruiser;
@@ -52,14 +57,33 @@ int main(void)
 	char battlegrid[10][10];
 	int onedim = 0;
 	int twodim = 0;
+	int latitude;
+	int longitude;
+
+	printf("Placing Aircraft Carrier:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
 
 	for(onedim = 0; onedim < 10; onedim++) {
 		for(twodim = 0; twodim < 10; twodim++) {
-			battlegrid[onedim][twodim] = '0';
+			if( (latitude == onedim) && (longitude == twodim) ) {
+				battlegrid[onedim][twodim] = 'o';
+			}
+			else {
+				battlegrid[onedim][twodim] = '~';
+			}
 			printf("%c ", battlegrid[onedim][twodim]);
 		}
 		printf("\n");
 	}
 
+//place ships on the grid randomly
+	//start with aircraft carrier
+
+
+
+	//printf("%d%d\n", latitude, longitude);
+
+	
 	return 0;
 }	
