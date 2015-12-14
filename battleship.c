@@ -65,9 +65,7 @@ int main(void)
 	for(onedim = 0; onedim < 10; onedim++) {
 		for(twodim = 0; twodim < 10; twodim++) {
 			battlegrid[onedim][twodim] = '*';
-			printf("%c ", battlegrid[onedim][twodim]);
 		}
-		printf("\n");
 	}
 
 //This successfully prints the Aircraft Carrier to the board (sometimes)
@@ -111,6 +109,11 @@ int main(void)
 					}
 				}
 			}
+		}
+	}
+
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
 			printf("%c ", battlegrid[onedim][twodim]);
 		}
 		printf("\n");
