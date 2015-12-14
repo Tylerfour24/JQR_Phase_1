@@ -52,13 +52,15 @@ int main(void)
 	printf("Boat 5: %s\nSize: %d\n\n", Battleship.shipname, Battleship.shipsize);
 	printf("Boat 6: %s\nSize: %d\n\n", Aircraft_Carrier.shipname, Aircraft_Carrier.shipsize);
 
-//create the grid on which the game is played via two-dimensional array
+//create the grid on which the game is played via two-dimensional array, and place ships on grid
 
 	char battlegrid[10][10];
 	int onedim = 0;
 	int twodim = 0;
 	int latitude;
 	int longitude;
+	int orientation;
+	//int count;
 
 	printf("Placing Aircraft Carrier:\n");
 	latitude = rand() % 10;
@@ -67,7 +69,39 @@ int main(void)
 	for(onedim = 0; onedim < 10; onedim++) {
 		for(twodim = 0; twodim < 10; twodim++) {
 			if( (latitude == onedim) && (longitude == twodim) ) {
-				battlegrid[onedim][twodim] = 'o';
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 5) {
+						battlegrid[onedim][twodim] = 'o';
+						battlegrid[onedim+1][twodim] = 'o';
+						battlegrid[onedim+2][twodim] = 'o';
+						battlegrid[onedim+3][twodim] = 'o';
+						battlegrid[onedim+4][twodim] = 'o';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'o';
+						battlegrid[onedim-1][twodim] = 'o';
+						battlegrid[onedim-2][twodim] = 'o';
+						battlegrid[onedim-3][twodim] = 'o';
+						battlegrid[onedim-4][twodim] = 'o';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 5) {
+						battlegrid[onedim][twodim] = 'o';
+						battlegrid[onedim][twodim+1] = 'o';
+						battlegrid[onedim][twodim+2] = 'o';
+						battlegrid[onedim][twodim+3] = 'o';
+						battlegrid[onedim][twodim+4] = 'o';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'o';
+						battlegrid[onedim][twodim-1] = 'o';
+						battlegrid[onedim][twodim-2] = 'o';
+						battlegrid[onedim][twodim-3] = 'o';
+						battlegrid[onedim][twodim-4] = 'o';
+					}
+				}
 			}
 			else {
 				battlegrid[onedim][twodim] = '~';
@@ -76,6 +110,11 @@ int main(void)
 		}
 		printf("\n");
 	}
+
+/*FOR CHECKING BOUNDARIES FOR SHIPS
+ADD VALUE OF SHIP TO GRID POINT, AND COUNT RIGHT OR DOWN (+) OR LEFT/UP (-1)
+AND CHECK IF GREATER THAN 10 OR LESS THAN 0
+*/
 
 //place ships on the grid randomly
 	//start with aircraft carrier
