@@ -60,55 +60,55 @@ int main(void)
 	int latitude;
 	int longitude;
 	int orientation;
-	//int count;
 
+//This successfully creates the empty board
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			battlegrid[onedim][twodim] = '*';
+			printf("%c ", battlegrid[onedim][twodim]);
+		}
+		printf("\n");
+	}
+
+//This successfully prints the Aircraft Carrier to the board (sometimes)
 	printf("Placing Aircraft Carrier:\n");
 	latitude = rand() % 10;
 	longitude = rand() % 10;
-
-	for(onedim = 0; onedim < 10; onedim++) {
-		for(twodim = 0; twodim < 10; twodim++) {
-			if( (latitude == onedim) && (longitude == twodim) ) {
+	for(onedim = 0; onedim < 10; onedim++) { //if count goes here, it will make five game boards
+		for(twodim = 0; twodim < 10; twodim++) { //if count goes here, that will just do really weird shit
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) { //if count goes here, 
 				orientation = rand() % 2;
 				if(orientation == 0) { //HORIZONTAL
 					if(latitude <= 5) {
-						battlegrid[onedim][twodim] = 'o';
-						battlegrid[onedim+1][twodim] = 'o';
-						battlegrid[onedim+2][twodim] = 'o';
-						battlegrid[onedim+3][twodim] = 'o';
-						battlegrid[onedim+4][twodim] = 'o';
+						battlegrid[onedim][twodim] = 'A';
+						battlegrid[onedim+1][twodim] = 'A';
+						battlegrid[onedim+2][twodim] = 'A';
+						battlegrid[onedim+3][twodim] = 'A';
+						battlegrid[onedim+4][twodim] = 'A';
 					}
 					else {
-						battlegrid[onedim][twodim] = 'o';
-						battlegrid[onedim-1][twodim] = 'o';
-						battlegrid[onedim-2][twodim] = 'o';
-						battlegrid[onedim-3][twodim] = 'o';
-						battlegrid[onedim-4][twodim] = 'o';
+						battlegrid[onedim][twodim] = 'A';
+						battlegrid[onedim-1][twodim] = 'A';
+						battlegrid[onedim-2][twodim] = 'A';
+						battlegrid[onedim-3][twodim] = 'A';
+						battlegrid[onedim-4][twodim] = 'A';
 					}
 				}
 				else { //VERTICAL
 					if(longitude <= 5) {
-						battlegrid[onedim][twodim] = 'o';
-						battlegrid[onedim][twodim+1] = 'o';
-						battlegrid[onedim][twodim+2] = 'o';
-						battlegrid[onedim][twodim+3] = 'o';
-						battlegrid[onedim][twodim+4] = 'o';
+						battlegrid[onedim][twodim] = 'A';
+						battlegrid[onedim][twodim+1] = 'A';
+						battlegrid[onedim][twodim+2] = 'A';
+						battlegrid[onedim][twodim+3] = 'A';
+						battlegrid[onedim][twodim+4] = 'A';
 					}
 					else {
-						battlegrid[onedim][twodim] = 'o';
-						battlegrid[onedim][twodim-1] = 'o';
-						battlegrid[onedim][twodim-2] = 'o';
-						battlegrid[onedim][twodim-3] = 'o';
-						battlegrid[onedim][twodim-4] = 'o';
+						battlegrid[onedim][twodim] = 'A';
+						battlegrid[onedim][twodim-1] = 'A';
+						battlegrid[onedim][twodim-2] = 'A';
+						battlegrid[onedim][twodim-3] = 'A';
+						battlegrid[onedim][twodim-4] = 'A';
 					}
-				}
-			}
-			else {
-				if(battlegrid[onedim][twodim] == 'o') {
-					; //DO NOTHING
-				}
-				else {
-					battlegrid[onedim][twodim] = '~';
 				}
 			}
 			printf("%c ", battlegrid[onedim][twodim]);
@@ -116,18 +116,11 @@ int main(void)
 		printf("\n");
 	}
 
+
 /*FOR CHECKING BOUNDARIES FOR SHIPS
 ADD VALUE OF SHIP TO GRID POINT, AND COUNT RIGHT OR DOWN (+) OR LEFT/UP (-1)
 AND CHECK IF GREATER THAN 10 OR LESS THAN 0
 */
-
-//place ships on the grid randomly
-	//start with aircraft carrier
-
-
-
-	//printf("%d%d\n", latitude, longitude);
-
 	
 	return 0;
 }	
