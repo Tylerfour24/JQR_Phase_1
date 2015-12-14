@@ -104,7 +104,12 @@ int main(void)
 				}
 			}
 			else {
-				battlegrid[onedim][twodim] = '~';
+				if(battlegrid[onedim][twodim] == 'o') {
+					; //DO NOTHING
+				}
+				else {
+					battlegrid[onedim][twodim] = '~';
+				}
 			}
 			printf("%c ", battlegrid[onedim][twodim]);
 		}
