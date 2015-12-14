@@ -68,13 +68,13 @@ int main(void)
 		}
 	}
 
-//This successfully prints the Aircraft Carrier to the board (sometimes)
+//This successfully prints the Aircraft Carrier to the board
 	printf("Placing Aircraft Carrier:\n");
 	latitude = rand() % 10;
 	longitude = rand() % 10;
-	for(onedim = 0; onedim < 10; onedim++) { //if count goes here, it will make five game boards
-		for(twodim = 0; twodim < 10; twodim++) { //if count goes here, that will just do really weird shit
-			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) { //if count goes here, 
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) { 
 				orientation = rand() % 2;
 				if(orientation == 0) { //HORIZONTAL
 					if(latitude <= 5) {
@@ -112,12 +112,192 @@ int main(void)
 		}
 	}
 
+//this successfully prints the Battleship to the board
+	printf("Placing Battleship:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) {
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 6) {
+						battlegrid[onedim][twodim] = 'B';
+						battlegrid[onedim+1][twodim] = 'B';
+						battlegrid[onedim+2][twodim] = 'B';
+						battlegrid[onedim+3][twodim] = 'B';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'B';
+						battlegrid[onedim-1][twodim] = 'B';
+						battlegrid[onedim-2][twodim] = 'B';
+						battlegrid[onedim-3][twodim] = 'B';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 6) {
+						battlegrid[onedim][twodim] = 'B';
+						battlegrid[onedim][twodim+1] = 'B';
+						battlegrid[onedim][twodim+2] = 'B';
+						battlegrid[onedim][twodim+3] = 'B';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'B';
+						battlegrid[onedim][twodim-1] = 'B';
+						battlegrid[onedim][twodim-2] = 'B';
+						battlegrid[onedim][twodim-3] = 'B';
+					}
+				}
+			}
+		}
+	}
+
+//this successfully prints the Cruiser to the board
+	printf("Placing Cruiser:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) {
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 7) {
+						battlegrid[onedim][twodim] = 'C';
+						battlegrid[onedim+1][twodim] = 'C';
+						battlegrid[onedim+2][twodim] = 'C';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'C';
+						battlegrid[onedim-1][twodim] = 'C';
+						battlegrid[onedim-2][twodim] = 'C';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 7) {
+						battlegrid[onedim][twodim] = 'C';
+						battlegrid[onedim][twodim+1] = 'C';
+						battlegrid[onedim][twodim+2] = 'C';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'C';
+						battlegrid[onedim][twodim-1] = 'C';
+						battlegrid[onedim][twodim-2] = 'C';
+					}
+				}
+			}
+		}
+	}
+
+//this successfully prints the Destroyer to the board
+	printf("Placing Destroyer:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) {
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 7) {
+						battlegrid[onedim][twodim] = 'D';
+						battlegrid[onedim+1][twodim] = 'D';
+						battlegrid[onedim+2][twodim] = 'D';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'D';
+						battlegrid[onedim-1][twodim] = 'D';
+						battlegrid[onedim-2][twodim] = 'D';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 7) {
+						battlegrid[onedim][twodim] = 'D';
+						battlegrid[onedim][twodim+1] = 'D';
+						battlegrid[onedim][twodim+2] = 'D';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'D';
+						battlegrid[onedim][twodim-1] = 'D';
+						battlegrid[onedim][twodim-2] = 'D';
+					}
+				}
+			}
+		}
+	}
+
+//this successfully prints the Patrol Boat to the board
+	printf("Placing Patrol Boat:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) {
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 8) {
+						battlegrid[onedim][twodim] = 'P';
+						battlegrid[onedim+1][twodim] = 'P';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'P';
+						battlegrid[onedim-1][twodim] = 'P';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 8) {
+						battlegrid[onedim][twodim] = 'P';
+						battlegrid[onedim][twodim+1] = 'P';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'P';
+						battlegrid[onedim][twodim-1] = 'P';
+					}
+				}
+			}
+		}
+	}
+
+//this successfully prints the Submarine to the board
+	printf("Placing Submarine:\n");
+	latitude = rand() % 10;
+	longitude = rand() % 10;
+	for(onedim = 0; onedim < 10; onedim++) {
+		for(twodim = 0; twodim < 10; twodim++) {
+			if( ((latitude == onedim) && (longitude == twodim) && (battlegrid[onedim][twodim] == '*')) ) {
+				orientation = rand() % 2;
+				if(orientation == 0) { //HORIZONTAL
+					if(latitude <= 8) {
+						battlegrid[onedim][twodim] = 'S';
+						battlegrid[onedim+1][twodim] = 'S';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'S';
+						battlegrid[onedim-1][twodim] = 'S';
+					}
+				}
+				else { //VERTICAL
+					if(longitude <= 8) {
+						battlegrid[onedim][twodim] = 'S';
+						battlegrid[onedim][twodim+1] = 'S';
+					}
+					else {
+						battlegrid[onedim][twodim] = 'S';
+						battlegrid[onedim][twodim-1] = 'S';
+					}
+				}
+			}
+		}
+	}
+
+
+
 	for(onedim = 0; onedim < 10; onedim++) {
 		for(twodim = 0; twodim < 10; twodim++) {
 			printf("%c ", battlegrid[onedim][twodim]);
 		}
 		printf("\n");
 	}
+
+
 
 
 /*FOR CHECKING BOUNDARIES FOR SHIPS
