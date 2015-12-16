@@ -9,10 +9,10 @@ struct Ship {
 };
 
 int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]);
-int down(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count);
-int up(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count);
-int left(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count);
-int right(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count);
+int down(char battlegrid[][10], int onedim, int twodim, struct Ship ship);
+int up(char battlegrid[][10], int onedim, int twodim, struct Ship ship);
+int left(char battlegrid[][10], int onedim, int twodim, struct Ship ship);
+int right(char battlegrid[][10], int onedim, int twodim, struct Ship ship);
 
 int main(void)
 {
@@ -79,7 +79,6 @@ int main(void)
 		}
 		printf("\n");
 	}
-
 	return 0;
 }
 
@@ -95,51 +94,56 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 8) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'P';
 								battlegrid[onedim+1][twodim] = 'P';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'P';
 								battlegrid[onedim-1][twodim] = 'P';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 8) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'P';
 								battlegrid[onedim][twodim+1] = 'P';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'P';
 								battlegrid[onedim][twodim-1] = 'P';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else if(strcmp(ship.shipname, "Submarine") == 0) {
 		printf("Placing Submarine:\n");
@@ -151,51 +155,56 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 8) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'S';
 								battlegrid[onedim+1][twodim] = 'S';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'S';
 								battlegrid[onedim-1][twodim] = 'S';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 8) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'S';
 								battlegrid[onedim][twodim+1] = 'S';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'S';
 								battlegrid[onedim][twodim-1] = 'S';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else if(strcmp(ship.shipname, "Cruiser") == 0) {
 		printf("Placing Cruiser:\n");
@@ -207,55 +216,60 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 7) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'C';
 								battlegrid[onedim+1][twodim] = 'C';
 								battlegrid[onedim+2][twodim] = 'C';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'C';
 								battlegrid[onedim-1][twodim] = 'C';
 								battlegrid[onedim-2][twodim] = 'C';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 7) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'C';
 								battlegrid[onedim][twodim+1] = 'C';
 								battlegrid[onedim][twodim+2] = 'C';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'C';
 								battlegrid[onedim][twodim-1] = 'C';
 								battlegrid[onedim][twodim-2] = 'C';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else if(strcmp(ship.shipname, "Destroyer") == 0) {
 		printf("Placing Destroyer:\n");
@@ -267,55 +281,60 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 7) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'D';
 								battlegrid[onedim+1][twodim] = 'D';
 								battlegrid[onedim+2][twodim] = 'D';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'D';
 								battlegrid[onedim-1][twodim] = 'D';
 								battlegrid[onedim-2][twodim] = 'D';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 7) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'D';
 								battlegrid[onedim][twodim+1] = 'D';
 								battlegrid[onedim][twodim+2] = 'D';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'D';
 								battlegrid[onedim][twodim-1] = 'D';
 								battlegrid[onedim][twodim-2] = 'D';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else if(strcmp(ship.shipname, "Battleship") == 0) {
 		printf("Placing Battleship:\n");
@@ -327,59 +346,64 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 6) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'B';
 								battlegrid[onedim+1][twodim] = 'B';
 								battlegrid[onedim+2][twodim] = 'B';
 								battlegrid[onedim+3][twodim] = 'B';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'B';
 								battlegrid[onedim-1][twodim] = 'B';
 								battlegrid[onedim-2][twodim] = 'B';
 								battlegrid[onedim-3][twodim] = 'B';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 6) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'B';
 								battlegrid[onedim][twodim+1] = 'B';
 								battlegrid[onedim][twodim+2] = 'B';
 								battlegrid[onedim][twodim+3] = 'B';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'B';
 								battlegrid[onedim][twodim-1] = 'B';
 								battlegrid[onedim][twodim-2] = 'B';
 								battlegrid[onedim][twodim-3] = 'B';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else if(strcmp(ship.shipname, "Aircraft Carrier") == 0) {
 		printf("Placing Aircraft Carrier:\n");
@@ -391,81 +415,85 @@ int placeships(struct Ship ship, int onedim, int twodim, char battlegrid[][10]) 
 					int orientation = rand() % 2;
 					if(orientation == 0) { //HORIZONTAL
 						if(latitude <= 5) {
-							right(battlegrid, onedim, twodim, ship, count);
+							count = right(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'A';
 								battlegrid[onedim+1][twodim] = 'A';
 								battlegrid[onedim+2][twodim] = 'A';
 								battlegrid[onedim+3][twodim] = 'A';
 								battlegrid[onedim+4][twodim] = 'A';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							left(battlegrid, onedim, twodim, ship, count);
+							count = left(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'A';
 								battlegrid[onedim-1][twodim] = 'A';
 								battlegrid[onedim-2][twodim] = 'A';
 								battlegrid[onedim-3][twodim] = 'A';
 								battlegrid[onedim-4][twodim] = 'A';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 					else { //VERTICAL
 						if(longitude <= 5) {
-							down(battlegrid, onedim, twodim, ship, count);
+							count = down(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'A';
 								battlegrid[onedim][twodim+1] = 'A';
 								battlegrid[onedim][twodim+2] = 'A';
 								battlegrid[onedim][twodim+3] = 'A';
 								battlegrid[onedim][twodim+4] = 'A';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 						else {
-							up(battlegrid, onedim, twodim, ship, count);
+							count = up(battlegrid, onedim, twodim, ship);
 							if(count != 0) {
 								battlegrid[onedim][twodim] = 'A';
 								battlegrid[onedim][twodim-1] = 'A';
 								battlegrid[onedim][twodim-2] = 'A';
 								battlegrid[onedim][twodim-3] = 'A';
 								battlegrid[onedim][twodim-4] = 'A';
+								return 1;
 							}
 							else {
-								return 0; //DO NOTHING
+								return 0; //RESET
 							}
 						}
 					}
 				}
 			}
 		}
+		return 0;
 	}
 	else {
 		printf("SOMETHING WENT WRONG\n");
 		return 0;
 	}
-	return 1;
 }
 
-int down(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count) {
-	count = 1;
+int down(char battlegrid[][10], int onedim, int twodim, struct Ship ship) {
+	int count = 1;
 	for(count = 1; count < ship.shipsize; count++) {
 		if(battlegrid[onedim][twodim + count] == '*') {
 			; //DO NOTHING
 		}
 		else {
-			for(; count >= 1; --count) {
+			/*for(; count >= 1; --count) {
 				battlegrid[onedim][twodim+count] = '*';
-			}
+			}*/
 			count = 0;
 			break;
 		}
@@ -473,16 +501,16 @@ int down(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int co
 	return count;
 }
 
-int up(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count) {
-	count = 1;
+int up(char battlegrid[][10], int onedim, int twodim, struct Ship ship) {
+	int count = 1;
 	for(count = 1; count < ship.shipsize; count++) {
 		if(battlegrid[onedim][twodim - count] == '*') {
 			; //DO NOTHING
 		}
 		else {
-			for(; count >= 1; --count) {
+			/*for(; count >= 1; --count) {
 				battlegrid[onedim][twodim-count] = '*';
-			}
+			}*/
 			count = 0;
 			break;
 		}
@@ -490,16 +518,16 @@ int up(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int coun
 	return count;
 }
 
-int left(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count) {
-	count = 1;
+int left(char battlegrid[][10], int onedim, int twodim, struct Ship ship) {
+	int count = 1;
 	for(count = 1; count < ship.shipsize; count++) {
 		if(battlegrid[onedim - count][twodim] == '*') {
 			; //DO NOTHING
 		}
 		else {
-			for(; count >= 1; --count) {
+			/*for(; count >= 1; --count) {
 				battlegrid[onedim - count][twodim] = '*';
-			}
+			}*/
 			count = 0;
 			break;
 		}
@@ -507,16 +535,16 @@ int left(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int co
 	return count;
 }
 
-int right(char battlegrid[][10], int onedim, int twodim, struct Ship ship, int count) {
-	count = 1;
+int right(char battlegrid[][10], int onedim, int twodim, struct Ship ship) {
+	int count = 1;
 	for(count = 1; count < ship.shipsize; count++) {
 		if(battlegrid[onedim + count][twodim] == '*') {
 			; //DO NOTHING
 		}
 		else {
-			for(; count >= 1; --count) {
+			/*for(; count >= 1; --count) {
 				battlegrid[onedim + count][twodim] = '*';
-			}
+			}*/
 			count = 0;
 			break;
 		}
